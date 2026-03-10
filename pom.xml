@@ -11,6 +11,9 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <karate.version>1.4.1</karate.version>
+
+        <karate.output.cucumber.json>target/karate-reports</karate.output.cucumber.json>
+
     </properties>
     <dependencies>
         <dependency>
@@ -24,9 +27,15 @@
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
-            <version>5.7.0</version>
+            <version>5.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.11.0</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -41,6 +50,7 @@
                     <forkCount>1</forkCount>
                     <reuseForks>false</reuseForks>
                 </configuration>
+
             </plugin>
         </plugins>
     </build>
