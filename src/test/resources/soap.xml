@@ -1,8 +1,0 @@
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-    <soap:Body>
-        <Add xmlns="http://tempuri.org/">
-            <intA><a></intA>
-            <intB><a></intB>
-        </Add>
-    </soap:Body>
-</soap:Envelope>

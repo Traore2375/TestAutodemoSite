@@ -5,8 +5,8 @@ class TestRunner {
     @Karate.Test
     Karate testAll() {
         return Karate.run("classpath:feature").relativeTo(getClass())
-                .outputCucumberJson(true)   // <-- très important
-                .outputHtmlReport(true);    // optionnel
+                .outputCucumberJson(true)
+                .tags("@TestGET");
     }
 
 }

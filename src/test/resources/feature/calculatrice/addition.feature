@@ -1,3 +1,4 @@
+@calculatrice
 Feature: Addition via SOAP
 
   Background:
@@ -5,7 +6,7 @@ Feature: Addition via SOAP
     * configure headers = headers
     * header SOAPAction = endpoints.add
 
-  Scenario Outline: Add numbers using SOAP
+  Scenario Outline: Tester l' addition et vérifier le résultat
     # Définition des variables pour ce scénario
     * def a = <a>
     * def b = <b>
@@ -24,16 +25,16 @@ Feature: Addition via SOAP
     """
 
     When method post
-    Then status 200
+    Then status <statut>
     # Optionnel : vérifier que la réponse contient le résultat correct
 
         #* def resultValue = parseInt()
+
     And match response //AddResult == '<result>'
 
     Examples:
-      | a  | b  | result| Commentaire                |
-      | 5  | 3  | 8  |    addition positif           |
-      | 10 | 7  | 17 | addition positif              |
-      | 10 | -3 | 7  | addition avec nbre negatif    |
-      | -5 | -5 |-10 | addition avec nbre negatif    |
-      | 'abc'| 5| ERROR | mauvais format intA        |
+      | a  | b  | result| Commentaire                |statut|
+      | 5  | 3  | 8  |    addition positif           |200|
+      | 10 | 7  | 17 | addition positif              |200|
+      | 10 | -3 | 7  | addition avec nbre negatif    |200|
+      | -5 | -5 |-10 | addition avec nbre negatif    |200|

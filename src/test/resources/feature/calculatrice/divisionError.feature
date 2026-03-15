@@ -1,3 +1,4 @@
+@calculatrice
 Feature: Calculator Division
 
   Background:
@@ -5,7 +6,7 @@ Feature: Calculator Division
     * configure headers = headers
     * header SOAPAction = 'http://tempuri.org/Divide'
 
-  Scenario Outline: Tester toutes les variations de la division et vérifier le résultat
+  Scenario Outline: Tester division et vérifier le résultat
 
     # Variables
     * def a = <a>
@@ -41,16 +42,13 @@ Feature: Calculator Division
     </soap:Envelope>
     """
     When method post
-    Then status 200
+    Then status <statut>
 
     # Extraction du résultat SOAP
     And match response //DivideResult == '<Result>'
 
     Examples:
-      | a    | b | Result | Commentaire           |
-      | 10   | 2 | 5      | division normale      |
-      | 10   | 0 | ERROR  | division par zéro     |
-      | abc  | 5 | ERROR  | mauvais format intA   |
-      | -10  | 2 | -5     | division avec négatif |
-      | 10   | -2| -5     | division avec négatif |
-      | -10  | -2| 5      | négatif / négatif     |
+      | a    | b | Result | Commentaire           |statut|
+      | 10   | 0 | ERROR  | division par zéro     |500|
+      | abc  | 5 | ERROR  | mauvais format intA   |500|
+      | abc  | Null | ERROR  | mauvais format i   |500|

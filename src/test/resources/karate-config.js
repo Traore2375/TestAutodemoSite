@@ -7,6 +7,7 @@
    config.endpoints = {
      add: 'http://tempuri.org/Add',
      divide: 'http://tempuri.org/Divide'
+
    };
 
    // environnement
