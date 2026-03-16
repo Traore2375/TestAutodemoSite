@@ -21,8 +21,8 @@ function fn() {
     steps:'/test-steps/6779',
     idproject: '/projects/12'
 
-  };
 
+  };
   // Paramètres par défaut
   config.defaultParams = {
     page: 0,
@@ -30,6 +30,8 @@ function fn() {
     sort: 'id,desc',
     fields:'name,reference,script,charter,session_duration',
     expectedstatute: 200,
+    nametestcases: 'User can save password that contains only lowercase letters',
+    nombreprojects:20
 
 
   };
