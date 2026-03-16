@@ -12,10 +12,17 @@ function fn() {
   // Endpoints Squash TM
   config.endpoints = {
     listRequirements: '/projects/14/requirements',
-    getRequirement: '/projects/14/requirements/9030',
+    getRequirement: '/requirements/9030',
     listProjects: '/projects',
     listUsers: '/users',
-    listeTestCases: '/test-cases'
+    listTestCases: '/test-cases',
+    bugs:'/issues',
+    idtestcase:'/5055',
+    steps:'/test-steps',
+    idproject: '/projects/12'
+
+
+
   };
 
   // Paramètres par défaut
@@ -23,7 +30,10 @@ function fn() {
     page: 0,
     size: 50,
     sort: 'id,desc',
-    expectedstatute: 200
+    fields:'name,reference,script,charter,session_duration',
+    expectedstatute: 200,
+
+
   };
 
   // Environnement
