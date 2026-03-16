@@ -18,10 +18,8 @@ function fn() {
     listTestCases: '/test-cases',
     bugs:'/issues',
     idtestcase:'/5055',
-    steps:'/test-steps',
+    steps:'/test-steps/6779',
     idproject: '/projects/12'
-
-
 
   };
 
@@ -45,10 +43,10 @@ function fn() {
     config.baseUrl = 'https://demo.squashtest.org/squash/api/rest/latest';
   }
   else if (env == 'qa') {
-    config.baseUrl = 'https://qa.squashtest.org/squash/api/rest/latest';
+    config.baseUrl = 'https://demo.squashtest.org/squash/api/rest/latest';
   }
   else if (env == 'prod') {
-    config.baseUrl = 'https://prod.squashtest.org/squash/api/rest/latest';
+    config.baseUrl = 'https://demo.squashtest.org/squash/api/rest/latest';
   }
 
   return config;

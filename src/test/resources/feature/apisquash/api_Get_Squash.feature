@@ -12,13 +12,13 @@ Feature: Squash TM via API
     And param size = config.defaultParams.size
     When method GET
     Then match  responseStatus ==config.defaultParams.expectedstatute
-    And print ' ------------Voici la liste des projets ----------',response
+    And print ' ----Voici la liste des projets : ------',response
 
   Scenario: Recuperer un projet avec son ID
     Given path config.endpoints.idproject
     When method GET
     Then match  responseStatus ==config.defaultParams.expectedstatute
-    And print ' ---------Le projet est :  ----------',response
+    And print '----Le projet est : -------',response
 
   Scenario: Lister toutes les exigences
     Given path config.endpoints.listRequirements
