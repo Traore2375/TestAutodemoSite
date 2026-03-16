@@ -22,10 +22,10 @@ function fn() {
   config.defaultParams = {
     page: 0,
     size: 50,
-    sort: 'id,desc'
+    sort: 'id,desc',
+    expectedstatute: 200
   };
 
-config.status={ statusOK: 200}
   // Environnement
   var env = karate.env;
   if (!env) { env = 'dev'; }
