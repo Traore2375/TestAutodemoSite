@@ -7,19 +7,35 @@ Feature: Création d'un projet Squash avec JWT
     * header Accept = 'application/json'
     * header Content-Type = 'application/json; charset=UTF-8'
 
-  Scenario: Créer un projet Squash
+  Scenario: Créer une exigence Squash
     Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirements'
 
     And request
     """
-      {
-    "name": "Exigence API Karate",
-    "description": "Creation automatique via Karate",
-    "parent": {
-      "id": 9030,
-      "type": "requirement-folder"
+    {
+      "_type" : "requirement",
+      "current_version" : {
+        "_type" : "requirement-version",
+        "name" : "new age",
+        "criticality" : "MINOR",
+        "category" : {
+          "code" : "CAT_USER_STORY"
+        },
+        "status" : "UNDER_REVIEW",
+        "description" : "<p>leave a comment please</p>",
+        "custom_fields" : [ {
+          "code" : "cuf_txt_note",
+          "value" : "Star Trek style welcomed but not mandatory"
+        }, {
+          "code" : "cuf_tags_see_also",
+          "value" : [ "smart home", "sensors", "hand gesture" ]
+        } ]
+      },
+      "parent" : {
+        "_type" : "requirement",
+        "id" : 9030
+      }
     }
-  }
     """
     When method post
     Then status 201
