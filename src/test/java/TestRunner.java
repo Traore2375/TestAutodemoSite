@@ -6,7 +6,7 @@ class TestRunner {
     Karate testAll() {
         return Karate.run("classpath:feature").relativeTo(getClass())
                 .outputCucumberJson(true)
-                .tags("@TestPOST");
+                .tags("@TestPOST,@TestGET");
     }
 
 }
