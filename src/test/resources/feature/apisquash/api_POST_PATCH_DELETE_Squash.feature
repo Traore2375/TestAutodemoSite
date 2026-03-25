@@ -7,47 +7,8 @@ Feature: Création d'un projet Squash avec JWT
     * header Accept = 'application/json'
     * header Content-Type = 'application/json; charset=UTF-8'
 
-  Scenario: Créer une exigence Squash
-    Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirements'
-    And request
-    """
-    {
-  "_type": "requirement",
-  "current_version": {
-    "_type": "requirement-version",
-    "name": "POC KARATE REQUIREMENT",
-    "criticality": "MINOR",
-    "category": { "code": "bug01" },
-    "status": "WORK_IN_PROGRESS",
-    "description": "Description test",
-    "custom_fields": [
-      { "code": "Labels", "value": ["priority::Low","status::To Do","type::Bug"] }
-    ]
-  },
-  "parent": { "_type": "requirement-folder", "id": 6440 },
-  "project": { "_type": "project", "id": 14 },
-  "mode": "SYNCHRONIZED"
-}
-    """
-    When method post
-    Then status 201
-    And print 'Exigence créé :', response
 
 
-  Scenario: Modifier une ressource PATCH
-    Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirements/8489'
-    And request
- """
-  {
-  "_type" : "requirement",
-  "current_version" : {
-    "name" : "POC KARATE"
-   }
-   }
-  """
-    When method patch
-    Then status 200
-    And print 'nom modifié:', response
 
   Scenario: Creer un requirement Folder
     Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirement-folders'
@@ -55,20 +16,93 @@ Feature: Création d'un projet Squash avec JWT
  """
   {
   "_type" : "requirement-folder",
-  "name" : "Requirement subfolder 1",
-  "custom_fields" : [ {
-    "code" : "cuf1",
-    "value" : "Cuf1 Value"
-  } ],
+  "name" : "Requirement POC KARATE DEMO",
   "parent" : {
     "_type" : "requirement-folder",
     "id" : 6440
   }
 }
   """
-    When method patch
+    When method post
     Then status 201
     And print ' Dossier Exigence crée :', response
+
+  Scenario: Créer une exigence Squash
+    Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirements'
+    And request
+    """
+ {
+     "_type": "requirement" ,
+     "parent": {
+         "_type": "requirement-folder",
+         "id": 6440},
+     "current_version": {
+         "name": "Exigence Modele POC BDD",
+         "criticality": "MINOR",
+         "category": {
+             "code": "story01"
+         },
+         "status": "WORK_IN_PROGRESS",
+         "description": "Nouvelle exigence pour creer un POC ALD pour un client final "
+     }
+ }
+    """
+    When method post
+    Then status 201
+    And print 'Exigence créé :', response
+
+  Scenario: Modifier une une exigence PATCH
+    Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirements/8489'
+    And request
+     """
+      {
+      "_type" : "requirement",
+      "current_version" : {
+        "name" : "POC KARATE"
+       }
+       }
+      """
+    When method patch
+    Then status 200
+    And print 'nom modifié:', response
+
+  Scenario: Créer un cas de test
+    Given url 'https://demo.squashtest.org/squash/api/rest/latest/test-cases'
+    And request
+    """
+      {
+        "_type" : "test-case",
+        "name" : "karate user stories cases ",
+        "parent" : {
+          "_type" : "project",
+          "id" : 14
+        }
+        }
+
+    """
+    When method post
+    Then status 201
+    And print ' cas de test crée :', response
+
+
+  Scenario: Liée un cas de test à une exigence
+    Given url 'https://demo.squashtest.org/squash/api/rest/latest/test-cases/8155/coverages/9576'
+    And request
+    """
+      {
+        "_type" : "test-case",
+        "name" : "cas de test 9 poc karate demo ",
+        "parent" : {
+          "_type" : "project",
+          "id" : 14
+        }
+        }
+
+    """
+    When method post
+    Then status 200
+    And print ' cas de test crée :', response
+
 
   Scenario: Delete un Requirement
     Given url 'https://demo.squashtest.org/squash/api/rest/latest/requirements/9030'
